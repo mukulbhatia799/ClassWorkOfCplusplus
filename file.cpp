@@ -1,46 +1,54 @@
 #include<iostream>
 using namespace std;
 
-class Car
+class Employee
 {
-    char model[20];
-    int id;
-    static int no_of_wheels;
-    static int count;
+    string name;
+    int emp_id;
+    int salary;
+    char grade;
 public:
     void input()
     {
-        cout << "Enter model: ";
-        cin >> model;
-
-        cout << "Enter id: ";
-        cin >> id;
+        cout << "Enter employee name: ";
+        cin >> name;
+        cout << "Enter employee id: ";
+        cin >> emp_id;
     }
-    void display()
+    void performance()
     {
-        cout << "Your model is " << model << " and your id is " << id << endl;
+        cout << "\nA\nB\nC\nD\n";
+        cout << "Enter employee performance: ";
+        cin >> grade;
     }
-    static void count_of_Models()
+    void print_salary()
     {
-        count++;
-        cout << "Count of models: " << count << endl;
-
-        no_of_wheels++;
-        cout << "Number of wheels: " << no_of_wheels << endl;
+        switch(grade)
+        {
+            case 'A':
+                cout << "You got " << grade << " grade. So, your salary is " << 40000 << endl;
+                break;
+            case 'B':
+                cout << "You got " << grade << " grade. So, your salary is " << 30000 << endl;
+                break;
+            case 'C':
+                cout << "You got " << grade << " grade. So, your salary is " << 20000 << endl;
+                break;
+            case 'D':
+                cout << "You got " << grade << " grade. So, your salary is " << 10000 << endl;
+                break;
+            default:
+                cout << "Grade is invalid.." << endl;
+                break;
+        }
     }
 };
 
 int main(){
-    Car maruti;
-    maruti.input();
-    maruti.display();
-    maruti.count_of_Models();
-
-    Car maruti2;
-    maruti2.input();
-    maruti2.display();
-    maruti2.count_of_Models();
-
+    Employee emp1;
+    emp1.input();
+    emp1.performance();
+    emp1.print_salary();
 
     return 0;
 }
