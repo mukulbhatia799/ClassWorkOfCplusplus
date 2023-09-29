@@ -5,13 +5,14 @@ class Constructor_Handling
 {
     int age;
     double salary;
-    string name;
 public:
+    string name;
     Constructor_Handling()
     {
         cout << "Enter your name: ";
-        cin >> name;
+        getline(cin, name);
         cout << "Welcome " << name << endl;
+        Constructor_Handling con2(name, 100000, 21);
     }
     Constructor_Handling(string name, double salary, int age)
     {
@@ -25,9 +26,11 @@ public:
 };
 
 int main(){
-    Constructor_Handling con1;
-    Constructor_Handling con2("Mukul", 100000, 21);
+    int newClient;
     
+    cout << "Enter your choice: ";
+    cout << "\n1. Default constructor \n2. Parameterized constructor" << endl;
+    cin >> newClient;
 
     return 0;
 }
