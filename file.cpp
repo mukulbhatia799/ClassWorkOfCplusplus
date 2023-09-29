@@ -1,24 +1,33 @@
 #include<iostream>
 using namespace std;
 
-class Programming 
+class Constructor_Handling
 {
-    string str = "Programming languages";
+    int age;
+    double salary;
+    string name;
 public:
-    Programming()
+    Constructor_Handling()
     {
-        cout << "I love " << str << endl;
+        cout << "Enter your name: ";
+        cin >> name;
+        cout << "Welcome " << name << endl;
     }
-    Programming(string print)
+    Constructor_Handling(string name, double salary, int age)
     {
-        str = print;
-        cout << "I love " << str << endl;
+        this->name = name;
+        this->salary = salary;
+        this->age = age;
+        cout << "Your name is " << name << endl;
+        cout << "Your salary is " << salary << endl;
+        cout << "Your age is " << age << endl;
     }
 };
 
 int main(){
-    Programming pr1;
-    Programming pr2("cpp");
+    Constructor_Handling con1;
+    Constructor_Handling con2("Mukul", 100000, 21);
+    
 
     return 0;
 }
