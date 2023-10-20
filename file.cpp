@@ -1,36 +1,58 @@
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
-class Constructor_Handling
+int main()
 {
-    int age;
-    double salary;
-public:
-    string name;
-    Constructor_Handling()
-    {
-        cout << "Enter your name: ";
-        getline(cin, name);
-        cout << "Welcome " << name << endl;
-        Constructor_Handling con2(name, 100000, 21);
-    }
-    Constructor_Handling(string name, double salary, int age)
-    {
-        this->name = name;
-        this->salary = salary;
-        this->age = age;
-        cout << "Your name is " << name << endl;
-        cout << "Your salary is " << salary << endl;
-        cout << "Your age is " << age << endl;
-    }
-};
+    ofstream fout;
+    int SUB[5];
 
-int main(){
-    int newClient;
-    
-    cout << "Enter your choice: ";
-    cout << "\n1. Default constructor \n2. Parameterized constructor" << endl;
-    cin >> newClient;
+    fout.open("C:\\Users\\hp\\Documents\\2vscodeData\\ClassWorkOfCplusplus\\file11.txt");
+    for(int i=1;i<=3;i++)
+    {
+        int total=0;
+        cout<<"Enter student marks: "<<i<<endl;
+        for(int i=0;i<5;i++){
+        cin>>SUB[i];
+        }
+        cout<<"Total marks: "<<i<<endl;
+        fout<<"Total marks: "<<i<<endl;
+        for(int i=0;i<5;i++)
+        {
+            total = total + SUB[i];
+        }
+        cout<<total<<endl;
+        fout<<total<<endl;
+
+        int grade = total/5;
+        if(grade >= 90)
+        {
+            cout<<"grade : A"<<endl;
+            fout<<"grade : A"<<endl;
+        }
+        else if(grade < 90 && grade > 75)
+        {
+            cout<<"grade : B"<<endl;
+            fout<<"grade :B"<<endl;
+        }
+        else if(grade < 75 && grade > 33)
+        {
+            cout<<"grade: C"<<endl;
+            fout<<"grade : C"<<endl;
+        }
+        else
+        {
+            cout<<"Fail"<<endl;
+            fout<<"Fail"<<endl;
+        }
+    }
+    fout.close();
+    ifstream iff;
+    iff.open("C:\\Users\\hp\\Documents\\2vscodeData\\ClassWorkOfCplusplus\\file11.txt");
+    string str;
+    while (getline(iff, str)) {
+        cout << str << endl;
+    }
+    iff.close();
 
     return 0;
 }
