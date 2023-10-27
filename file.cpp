@@ -1,58 +1,47 @@
-#include<bits/stdc++.h>
+// operator overloading using member and friend function in c++.
+// return total sum of students marks and return which student have greater marks.
+#include<iostream>
 using namespace std;
 
-int main()
-{
-    ofstream fout;
-    int SUB[5];
-
-    fout.open("C:\\Users\\hp\\Documents\\2vscodeData\\ClassWorkOfCplusplus\\file11.txt");
-    for(int i=1;i<=3;i++)
+class student {
+    int subj1Marks;
+    int subj2Marks;
+    int sum;
+public:
+    student(int subj1Marks, int subj2Marks)
     {
-        int total=0;
-        cout<<"Enter student marks: "<<i<<endl;
-        for(int i=0;i<5;i++){
-        cin>>SUB[i];
-        }
-        cout<<"Total marks: "<<i<<endl;
-        fout<<"Total marks: "<<i<<endl;
-        for(int i=0;i<5;i++)
-        {
-            total = total + SUB[i];
-        }
-        cout<<total<<endl;
-        fout<<total<<endl;
+        this->subj1Marks = subj1Marks;
+        this->subj2Marks = subj2Marks;
+        sum = subj1Marks + subj2Marks;
+    }
+    student(int total)
+    {
+        this->sum = total;
+    }
+    void display()
+    {
+        cout << "Sum of student 1 and student 2 marks is " << this->sum << endl;
+    }
+    friend student operator+(student &stu1, student &stu2)
+    {
+        cout << "Student 1 total marks is " << stu1.sum << endl;
+        cout << "Student 2 total marks is " << stu2.sum << endl;
+        return student(stu1.subj1Marks + stu1.subj2Marks + stu2.subj1Marks + stu2.subj2Marks);
+    }
+    friend bool operator>(student &stu1, student &stu2)
+    {
+        return stu1.sum > stu2.sum ? 1 : 0;
+    }
+};
 
-        int grade = total/5;
-        if(grade >= 90)
-        {
-            cout<<"grade : A"<<endl;
-            fout<<"grade : A"<<endl;
-        }
-        else if(grade < 90 && grade > 75)
-        {
-            cout<<"grade : B"<<endl;
-            fout<<"grade :B"<<endl;
-        }
-        else if(grade < 75 && grade > 33)
-        {
-            cout<<"grade: C"<<endl;
-            fout<<"grade : C"<<endl;
-        }
-        else
-        {
-            cout<<"Fail"<<endl;
-            fout<<"Fail"<<endl;
-        }
-    }
-    fout.close();
-    ifstream iff;
-    iff.open("C:\\Users\\hp\\Documents\\2vscodeData\\ClassWorkOfCplusplus\\file11.txt");
-    string str;
-    while (getline(iff, str)) {
-        cout << str << endl;
-    }
-    iff.close();
+int main(){
+    student stu1(10, 15), stu2(10, 13);
+
+    student obj = stu1 + stu2;
+    obj.display();
+
+    if(stu1 > stu2) cout << "Student 1 total marks is greater than student 2 marks" << endl;
+    else cout << "student 2 marks is greater than student 1 marks " << endl;
 
     return 0;
 }
