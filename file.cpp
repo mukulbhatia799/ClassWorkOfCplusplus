@@ -1,70 +1,48 @@
 #include<iostream>
-#include<vector>
+#include<cmath>
 using namespace std;
 
-class PopulationMatrix {
-    int m;
-    vector<vector<int>> vec;
+class Arithmetic {
+    float real;
+    float imag;
 public:
-    PopulationMatrix() {
-        cin >> m;
-        for(int i = 0; i < m; i++)
-        {
-            vec.push_back(vector<int>());
-            for(int j = 0; j < m; j++)
-            {
-                int ele;
-                cin >> ele;
-                vec[i].push_back(ele);
-            }
-        }
-    }
-    void operator--()
+    Arithmetic()
     {
-        vector<vector<int>> vec2 = this->vec;
-        for(int i = 0; i < this->m; i++)
-        {
-            for(int j = 0; j < this->m; j++)
-            {
-                vec2[i][j]--;
-            }
-        }
-        cout << "Matrix after incrementing each element by 1:" << endl;
-        for(int i = 0; i < this->m; i++)
-        {
-            for(int j = 0; j < this->m; j++)
-            {
-                cout << vec2[i][j] << " ";
-            }
-            cout << endl;
-        }
+        real = 0;
+        imag = 0;
     }
-    void operator++()
+    void input(Arithmetic &comp2)
     {
-        vector<vector<int>> vec2 = this->vec;
-        for(int i = 0; i < this->m; i++)
-        {
-            for(int j = 0; j < this->m; j++)
-            {
-                vec2[i][j]++;
-            }
-        }
-        cout << "Matrix after decrementing each element by 1:" << endl;
-        for(int i = 0; i < this->m; i++)
-        {
-            for(int j = 0; j < this->m; j++)
-            {
-                cout << vec2[i][j] << " ";
-            }
-            cout << endl;
-        }
+        cin >> this->real >> this->imag;
+        cin >> comp2.real >> comp2.imag;
+    }
+    Arithmetic operator+(Arithmetic &ar)
+    {
+        Arithmetic temp;
+        temp.real = this->real + ar.real;
+        temp.imag = this->imag + ar.imag;
+        if(temp.imag < 0) cout << temp.real << " - " << abs(temp.imag) << "i" << endl;
+        else 
+            cout << temp.real << " + " << temp.imag << "i" << endl;
+        return temp;
+    }
+    Arithmetic operator-(Arithmetic &ar)
+    {
+        Arithmetic temp;
+        temp.real = this->real - ar.real;
+        temp.imag = this->imag - ar.imag;
+        if(temp.imag < 0) cout << temp.real << " - " << abs(temp.imag) << "i" << endl;
+        else 
+            cout << temp.real << " + " << temp.imag << "i" << endl;
+        return temp;
     }
 };
 
 int main(){
-    PopulationMatrix pm;
-    ++pm;
-    --pm;
+    Arithmetic comp1, comp2;
+    comp1.input(comp2);
+    Arithmetic com3 = comp1.operator+(comp2);
+    com3 = comp1.operator-(comp2);
     
     return 0;
 }
