@@ -1,48 +1,56 @@
-#include<iostream>
-#include<cmath>
+// store data of students and print those students data whose roll is odd.
+#include <iostream>
 using namespace std;
 
-class Arithmetic {
-    float real;
-    float imag;
-public:
-    Arithmetic()
-    {
-        real = 0;
-        imag = 0;
-    }
-    void input(Arithmetic &comp2)
-    {
-        cin >> this->real >> this->imag;
-        cin >> comp2.real >> comp2.imag;
-    }
-    Arithmetic operator+(Arithmetic &ar)
-    {
-        Arithmetic temp;
-        temp.real = this->real + ar.real;
-        temp.imag = this->imag + ar.imag;
-        if(temp.imag < 0) cout << temp.real << " - " << abs(temp.imag) << "i" << endl;
-        else 
-            cout << temp.real << " + " << temp.imag << "i" << endl;
-        return temp;
-    }
-    Arithmetic operator-(Arithmetic &ar)
-    {
-        Arithmetic temp;
-        temp.real = this->real - ar.real;
-        temp.imag = this->imag - ar.imag;
-        if(temp.imag < 0) cout << temp.real << " - " << abs(temp.imag) << "i" << endl;
-        else 
-            cout << temp.real << " + " << temp.imag << "i" << endl;
-        return temp;
-    }
-};
+class Student
+{
+    int roll;
+    string name;
+    int marks;
 
-int main(){
-    Arithmetic comp1, comp2;
-    comp1.input(comp2);
-    Arithmetic com3 = comp1.operator+(comp2);
-    com3 = comp1.operator-(comp2);
-    
+public:
+    void input()
+    {
+        cout << "Enter roll: ";
+        cin >> roll;
+        cin.ignore();
+        cout << "Enter name: ";
+        getline(cin, name);
+        cout << "Enter marks: ";
+        cin >> marks;
+    }
+
+    void findoddroll(int n);
+};
+void Student::findoddroll(int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        if (this->roll % 2 == 1)
+        {
+            cout << "roll: " << this->roll << endl;
+            cout << "name: " << this->name << endl;
+            cout << "marks: " << this->marks << endl;
+        }
+    }
+}
+int main()
+{
+    int n;
+    cout << "Enter number of students: ";
+    cin >> n;
+    Student st[n];
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << "Enter data of stu-" << i << endl;
+        st[i].input();
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        st[i].findoddroll(n);
+    }
+
     return 0;
 }
